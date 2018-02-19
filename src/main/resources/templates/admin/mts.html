@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Test HTML Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/head::head"/>
+<div th:replace="fragments/navbar::navbar"/>
+<form method="POST" action="/admin/mts" enctype="multipart/form-data">
+    <div class="row" style="margin: 0 auto; display: block">
+        <label class="btn btn-primary btn-file" style="margin-left:10px">
+            <span>Add image</span>
+            <input type="file" name="file" onchange="document.getElementById('submit').click()" style="display:none;"
+                   id="fileInput" accept=".png, .jpg, jpeg, .bmp"/>
+            <input type="submit" id="submit" style="display:none;"/>
+        </label>
+    </div>
+</form>
+<div class="row" style="padding-left: 50px">
+    <div th:each="demo: ${list}" class="col-sm-3">
+        <form action="/admin/mts/del" method="POST">
+            <div class="row">
+                <div class="col-xs-10">
+                    <label th:text="${demo.name}"></label>
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        <input type="number" name="id" th:value="${demo.id}" style="display:none" />
+                    </button>
+                </div>
+            </div>
+        </form>
+        <img th:src="@{'data:image/jpg;base64,' + ${demo.img}}" alt="Image" class="img-thumbnail"
+             style="width:300px; height:auto;"/>
+    </div>
+</div>
+</body>
+</html>

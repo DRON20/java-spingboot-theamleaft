@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Test HTML Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav th:switch="${#httpServletRequest.remoteUser}" class="navbar navbar-inverse">
+        <div th:case="admin" class="container=fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://techinfocom.com/">TechInfoCom</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/admin/">Home</a></li>
+                <li><a href="/admin/imagecar">ImageCar</a></li>
+                <li><a href="/admin/imagesing">ImageSing</a></li>
+                <li><a href="/admin/mts">MTS</a></li>
+                <li><a href="/admin/wagonfill">WagonFill</a></li>
+                <li><a href="/admin/metroqueue">MetroQueue</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li style="margin-right:40px"><a href="/logout"> <span
+                        class="glyphicon glyphicon-log-in"></span>LogOut</a></li>
+            </ul>
+        </div>
+        <div th:case="*" class="container=fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://techinfocom.com/">TechInfoCom</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/imagecar">ImageCar</a></li>
+                <li><a href="/imagesing">ImageSing</a></li>
+                <li><a href="/mts">MTS</a></li>
+                <li><a href="/wagonfill">WagonFill</a></li>
+                <li><a href="/metroqueue">MetroQueue</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li style="margin-right:40px"><a href="/admin"> <span
+                        class="glyphicon glyphicon-log-in"></span>Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
